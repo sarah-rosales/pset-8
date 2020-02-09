@@ -24,6 +24,8 @@ var currentPlayer = 0;
 
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
+const humanPlayer = "O";
+const computerPlayer = "X"
 
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 
@@ -85,4 +87,17 @@ function getWinner() {
   });
 
   return winner ? winner : board.includes("") ? null : "T";
+}
+
+function checkWinner() {
+  if (currentPlayer == 0)
+    points1++;
+  else
+    points2++;
+
+    document.getElementById("player1").innerHTML = points1;
+    document.getElementById("player2").innerHTML = points2;
+
+    reset();
+    drawBoard();
 }
