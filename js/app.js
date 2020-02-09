@@ -76,3 +76,8 @@ function gameOver(gameWon) {
 	}
 	getWinner(gameWon.player == humanPlayer ? "You win!" : "You lose.");
 }
+
+function getWinner(who) {
+	document.querySelector(".endgame").style.display = "block";
+	document.querySelector(".endgame .text").innerText = who;
+}
