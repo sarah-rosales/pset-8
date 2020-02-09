@@ -16,6 +16,9 @@ const winningConditions = [
 let board;
 let turn;
 let win;
+var points1 = 0;
+var points2 = 0;
+var currentPlayer = 0;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 
@@ -62,6 +65,10 @@ function takeTurn(e) {
       render();
     }
   }
+}
+
+function turnClick(square) {
+  turn(square.target.id, )
 }
 
 function getWinner() {
