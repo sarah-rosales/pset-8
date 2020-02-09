@@ -46,3 +46,10 @@ function takeTurn(square) {
 		if (!checkTie()) turn(bestSpot(), computerPlayer);
 	}
 }
+
+function turn(squareId, player) {
+	board[squareId] = player;
+	document.getElementById(squareId).innerText = player;
+	let gameWon = checkWin(board, player)
+	if (gameWon) gameOver(gameWon)
+}
