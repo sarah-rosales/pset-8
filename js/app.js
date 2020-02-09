@@ -85,3 +85,7 @@ function getWinner(who) {
 function emptySquares() {
 	return board.filter(s => typeof s == 'number');
 }
+
+function bestSpot() {
+	return emptySquares()[0];
+}
