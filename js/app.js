@@ -16,9 +16,6 @@ const winningConditions = [
 let board;
 let turn;
 let win;
-var points1 = 0;
-var points2 = 0;
-var currentPlayer = 0;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 
@@ -70,7 +67,10 @@ function takeTurn(e) {
 }
 
 function turnClick(square) {
-  turn(square.target.id, )
+  if (typeof board[square.target.id] == "number") {
+    turn(square.target.id, humanPlayer)
+    if (!checkTie()) turn(bestSpot(), computerPlayer);
+  }
 }
 
 function getWinner() {
@@ -89,15 +89,38 @@ function getWinner() {
   return winner ? winner : board.includes("") ? null : "T";
 }
 
-function checkWinner() {
-  if (currentPlayer == 0)
-    points1++;
-  else
-    points2++;
+function gameOver(gameWon) {
+	for (let index of winCombos[gameWon.index]) {
+		document.getElementById(index).style.backgroundColor =
+			gameWon.player == huPlayer ? "blue" : "red";
+	}
+	for (var i = 0; i < square.length; i++) {
+		square[i].removeEventListener('click', turnClick, false);
+	}
+	declareWinner(gameWon.player == humanPlayer ? "You win!" : "You lose.");
+}
 
-    document.getElementById("player1").innerHTML = points1;
-    document.getElementById("player2").innerHTML = points2;
+function declareWinner(who) {
+	document.querySelector(".endgame").style.display = "block";
+	document.querySelector(".endgame .text").innerText = who;
+}
 
-    reset();
-    drawBoard();
+function emptySquares() {
+  return board.filter(s => typeof s == "number");
+}
+
+function bestSpot() {
+  return emptySquares()[0];
+}
+
+function checkTie() {
+  if (emptySquares().length == 0) {
+    for (var i = 0; i < square.length; i++) {
+      square[i].style.backgroundColor = "green";
+      square[i].removeEventListener("click", turnClick, false);
+    }
+    declareWinner("It's a tie!")
+    return true;
+  }
+  return false;
 }
