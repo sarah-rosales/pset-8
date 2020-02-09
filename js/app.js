@@ -66,3 +66,13 @@ function checkWin(board, player) {
 	}
 	return gameWon;
 }
+function gameOver(gameWon) {
+	for (let index of winnningConditions[gameWon.index]) {
+		document.getElementById(index).style.backgroundColor =
+			gameWon.player == humanPlayer ? "gray" : "#6e6464";
+	}
+	for (var i = 0; i < cells.length; i++) {
+		cells[i].removeEventListener('click', takeTurn, false);
+	}
+	getWinner(gameWon.player == humanPlayer ? "You win!" : "You lose.");
+}
