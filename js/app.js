@@ -101,3 +101,5 @@ function checkTie() {
 	}
 	return false;
 }
+
+//the functions look drastically different from the walkthrough but online ai tutorials need a lot :(
