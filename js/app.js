@@ -89,3 +89,15 @@ function emptySquares() {
 function bestSpot() {
 	return emptySquares()[0];
 }
+
+function checkTie() {
+	if (emptySquares().length == 0) {
+		for (var i = 0; i < cells.length; i++) {
+			cells[i].style.backgroundColor = "#c4c4c4";
+			cells[i].removeEventListener('click', takeTurn, false);
+		}
+		getWinner("It's a tie!")
+		return true;
+	}
+	return false;
+}
