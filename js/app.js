@@ -39,3 +39,10 @@ function startGame() {
 		cells[i].addEventListener('click', takeTurn, false);
 	}
 }
+
+function takeTurn(square) {
+	if (typeof board[square.target.id] == 'number') {
+		turn(square.target.id, humanPlayer)
+		if (!checkTie()) turn(bestSpot(), computerPlayer);
+	}
+}
