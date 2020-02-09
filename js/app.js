@@ -81,3 +81,7 @@ function getWinner(who) {
 	document.querySelector(".endgame").style.display = "block";
 	document.querySelector(".endgame .text").innerText = who;
 }
+
+function emptySquares() {
+	return board.filter(s => typeof s == 'number');
+}
